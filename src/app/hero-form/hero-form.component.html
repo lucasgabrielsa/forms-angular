@@ -1,0 +1,23 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input id="name" name="name" class="form-control" required minlength="4" appForbiddenName="bob"
+        [(ngModel)]="model.name" #name="ngModel">
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+        <div *ngIf="name.getError('required')">
+          Name is required.
+        </div>
+        <div *ngIf="name.getError('minlength')">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="name.getError('forbiddenName')">
+          Name cannot be Bob.
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>
